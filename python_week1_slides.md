@@ -15,7 +15,7 @@ paginate: true
 
 ---
 
-# Session 1 (Tue)  
+# Session 1
 ## Python Basics & Syntax
 
 **Learning Goals**  
@@ -26,7 +26,7 @@ paginate: true
 
 ---
 
-# Python vs Java – Key Differences
+# Python vs C/C++/C#/Java – Key Differences
 
 - No type declarations (dynamic typing)  
 - Indentation defines blocks (no `{}`)  
