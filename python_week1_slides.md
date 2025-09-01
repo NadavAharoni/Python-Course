@@ -4,6 +4,9 @@ theme: default
 paginate: true
 
 ---
+# Python
+
+---
 # The Python Language
 - Easy to learn and readable - relatively simple syntax
 - Interpreted
@@ -64,7 +67,6 @@ python <enter>
 ```
 
 ---
-
 # Variables & Types
 
 - No type declarations  
@@ -76,6 +78,47 @@ y = 3.14      # float
 name = "Ana"  # string
 flag = True   # bool
 z = None      # NoneType
+```
+
+---
+# Converting between string and other types
+## Number to string
+
+```python
+y = 3.14      # float
+str = str(y)
+```
+
+## String to number
+
+```python
+y2 = float(str)
+```
+Can throw an exeption!
+
+---
+# The print function
+```python
+print(2+3)
+print("2"+str(3))
+```
+
+
+---
+# Lists
+
+A list is defined by `value_list=[val1, val2' ...]`
+0 indexed. Negative indices start from the end
+Slicing: `[start:end]` end is not included
+
+```python
+nums = [10, 20, 30]
+nums.append(40)
+nums[1] = 25
+
+print(nums[0])
+print(nums[-1]) # last item
+print(nums[1:2])
 ```
 
 ---
