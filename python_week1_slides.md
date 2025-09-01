@@ -8,7 +8,7 @@ paginate: true
 
 ---
 # The Python Language
-- Easy to learn and readable - relatively simple syntax
+- Easy to learn and readable – relatively simple syntax
 - Interpreted
 - Multi-paradigm:
     - supports multiple programming styles, including object-oriented, procedural, and functional programming.
@@ -41,7 +41,6 @@ paginate: true
 - Functions are first-class citizens  
 
 ---
-
 # Running Python
 - **Interactive REPL (Read–Eval–Print Loop)**: **
     - run `python` in terminal
@@ -71,6 +70,7 @@ python <enter>
 
 - No type declarations  
 - Types are inferred at runtime  
+- Variables are names bound to objects
 
 ```python
 x = 42        # int
@@ -86,43 +86,42 @@ z = None      # NoneType
 
 ```python
 y = 3.14      # float
-str = str(y)
+y_str = str(y)
 ```
 
 ## String to number
 
 ```python
-y2 = float(str)
+y2 = float(y_str)
 ```
-Can throw an exeption!
+Can throw an exception!
 
 ---
 # The print function
 ```python
 print(2+3)
-print("2"+str(3))
+print("2" + str(3))
+print("Hello", "World")  # prints with a space
 ```
-
 
 ---
 # Lists
 
-A list is defined by `value_list=[val1, val2' ...]`
-0 indexed. Negative indices start from the end
-Slicing: `[start:end]` end is not included
+A list is defined by `value_list = [val1, val2, ...]`  
+0 indexed. Negative indices start from the end.  
+Slicing: `[start:end]` end is not included.
 
 ```python
 nums = [10, 20, 30]
 nums.append(40)
 nums[1] = 25
 
-print(nums[0])
-print(nums[-1]) # last item
-print(nums[1:2])
+print(nums[0])     # first item
+print(nums[-1])    # last item
+print(nums[1:2])   # slice with one element
 ```
 
 ---
-
 # Strings & f-strings
 
 **f-strings = formatted string literals**  
@@ -142,11 +141,10 @@ print(f"My age next year will be: {age + 1}")
 Output:  
 ```
 My name is Ana and I am 22 years old.
-My age next year will be: : 23
+My age next year will be: 23
 ```
 
 ---
-
 # Strings as Sequences
 
 - Strings behave like sequences of characters  
@@ -165,10 +163,10 @@ print(s[0])     # 'p'
 print(s[1:4])   # 'yth'
 print(s[::2])   # 'pto'
 print(s[::-1])  # 'nohtyp'
+print(s[-2:])   # 'on'
 ```
 
 ---
-
 # Conditionals
 
 ```python
@@ -182,7 +180,6 @@ else:
 ```
 
 ---
-
 # Loops
 
 ```python
@@ -196,11 +193,10 @@ for name in names:
 x = 3
 while x > 0:
     x -= 1
-    print(x)
+    print(x)   # prints 2, 1, 0
 ```
 
 ---
-
 # 📝 Exercises
 
 1. Write a program that asks for a number and prints whether it is positive, negative, or zero.  
@@ -211,7 +207,6 @@ while x > 0:
 *Tip: Use CoPilot/ChatGPT to get a draft solution, then explain each line yourself.*
 
 ---
-
 # Session 2
 ## Collections & Pythonic Programming
 
@@ -221,7 +216,6 @@ while x > 0:
 - Solve problems in a Pythonic way  
 
 ---
-
 # Lists & Tuples
 
 ```python
@@ -236,7 +230,6 @@ point = (3, 4)   # tuple (immutable)
 - Tuples = immutable sequences  
 
 ---
-
 # List Comprehensions
 
 - A concise way to create lists  
@@ -273,13 +266,14 @@ B = {3, 4, 5}
 print(A | B)   # union
 print(A & B)   # intersection
 print(A - B)   # difference
+
+empty_set = set()   # {} creates an empty dict, not a set!
 ```
 
 - Unique elements, no duplicates  
 - Great for membership tests  
 
 ---
-
 # Dictionaries
 
 ```python
@@ -294,7 +288,6 @@ for name, grade in grades.items():
 - Fast lookups  
 
 ---
-
 # Iteration Helpers
 
 ```python
@@ -311,7 +304,6 @@ squares = [n**2 for n in nums]
 - Comprehensions for concise code  
 
 ---
-
 # Built-in Functions
 
 - `len`, `sum`, `min`, `max`, `sorted`  
@@ -324,7 +316,6 @@ print(any(n < 0 for n in nums))   # True
 ```
 
 ---
-
 # 📝 Exercises (AI encouraged)
 
 1. Create a list of numbers 1–20.  
@@ -342,7 +333,6 @@ print(any(n < 0 for n in nums))   # True
 5. Challenge: write `is_palindrome(word)` using slicing.  
 
 ---
-
 # Wrap-Up (Week 1)
 
 - Python syntax is simple & concise  
