@@ -2,37 +2,40 @@
 marp: true
 theme: default
 paginate: true
----
-
-# Python Programming – Week 1
-## Session 1 & 2: Basics, Collections, Pythonic Thinking
-
-**Course Goals**  
-- Learn Python syntax & idioms  
-- Practice with hands-on coding  
-- Use AI tools (CoPilot, ChatGPT) productively  
-- Understand and explain code  
 
 ---
-
-# Session 1
-## Python Basics & Syntax
-
-**Learning Goals**  
-- Run Python interactively and via scripts  
-- Use variables and dynamic typing  
-- Write conditionals and loops  
-- Practice with small programs  
+# The Python Language
+- Easy to learn and readable - relatively simple syntax
+- Interpreted
+- Multi-paradigm:
+    - supports multiple programming styles, including object-oriented, procedural, and functional programming.
+- Dynamically typed
+- Garbage collected
+- Batteries included: rich standard library
 
 ---
+# The Python Language
+## Extensible and embeddable:
+- Python code can be extended with modules written in other languages, like C or C++, to optimize performance.
+- It can also be embedded in other applications to provide scripting functionality
 
+---
+# The Python Language
+## Community and ecosystem attributes
+- Free and open-source: Python is freely available to use, modify, and distribute, even for commercial purposes.
+- Large community support
+- Rich ecosystem of third-party libraries (beyond the standard library)
+    - The Python Package Index (PyPI) contains thousands of third-party packages:
+        - web development (Django, Flask)
+        - data science (NumPy, Pandas)
+        - machine learning (TensorFlow, PyTorch)
+
+---
 # Python vs C/C++/C#/Java – Key Differences
-
 - No type declarations (dynamic typing)  
 - Indentation defines blocks (no `{}`)  
 - Built-in high-level data structures  
 - Functions are first-class citizens  
-- Batteries included: rich standard library  
 
 ---
 
@@ -70,7 +73,7 @@ python <enter>
 ```python
 x = 42        # int
 y = 3.14      # float
-name = "Ana"  # str
+name = "Ana"  # string
 flag = True   # bool
 z = None      # NoneType
 ```
@@ -90,13 +93,13 @@ z = None      # NoneType
 name = "Ana"
 age = 22
 print(f"My name is {name} and I am {age} years old.")
-print(f"Next year: {age + 1}")
+print(f"My age next year will be: {age + 1}")
 ```
 
 Output:  
 ```
 My name is Ana and I am 22 years old.
-Next year: 23
+My age next year will be: : 23
 ```
 
 ---
@@ -197,18 +200,25 @@ point = (3, 4)   # tuple (immutable)
 - Syntax:  
   ```python
   [expression for item in iterable if condition]
+  ```
 
 ---
 # List Comprehensions Examples
 ## Squares of numbers 0–9
+```python
 squares = [x**2 for x in range(10)]
+```
 
 ## Even numbers
+```python
 evens = [x for x in range(10) if x % 2 == 0]
+```
 
 ## First letters of names
+```python
 names = ["Ana", "Bo", "Cai"]
 first_letters = [name[0] for name in names]
+```
 
 ---
 # Sets
