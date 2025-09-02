@@ -490,6 +490,9 @@ p.greet()
 3. Given two lists, find all common elements without duplicates.  
    - Solve once with loops, once with sets.  
 
+---
+# 📝 Exercises (contd.)
+
 4. Write a program that maps each name in a list to its length using a dict comprehension.  
 
 5. Challenge: write `is_palindrome(word)` using slicing.  
