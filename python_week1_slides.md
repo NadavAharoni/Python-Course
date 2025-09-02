@@ -69,8 +69,7 @@ python <enter>
 # Variables & Types
 
 - No type declarations  
-- Types are inferred at runtime  
-- Variables are names bound to objects
+- Types are inferred at runtime
 
 ```python
 x = 42        # int
@@ -78,6 +77,9 @@ y = 3.14      # float
 name = "Ana"  # string
 flag = True   # bool
 z = None      # NoneType
+
+# type function returns type of a variabe
+print( type(name) )
 ```
 
 ---
@@ -119,10 +121,91 @@ nums[1] = 25
 print(nums[0])     # first item
 print(nums[-1])    # last item
 print(nums[1:2])   # slice with one element
+
+list1 = [1, 2]
+list2 = [3, 4]
+new_list = list1 + list2   # new_list is now [1, 2, 3, 4]
 ```
 
 ---
-# Strings & f-strings
+# Lists can contain any type
+
+## Lists can be heterogenic
+```python
+a_list = [1, 2, "hello"]
+```
+## Lists can contain lists
+
+```python
+list1 = [1, 2]
+list2 = [3, 4]
+list1.append(list2)
+list1.append(list2)
+print(list1)
+```
+
+---
+# Lists variables are references
+
+
+```python
+list1 = [1, 2]
+list2 = [3, 4]
+list1.append(list2)
+list1.append(list2)
+print(list1)
+list2.append(5)
+print(list1)
+```
+
+
+---
+# Strings
+
+String can be added.
+```python
+s1 = "hello"
+s2 = "world"
+s3 = s1 + s2
+
+message = "Python is "
+message2 = message
+message += "awesome!"
+print(message)
+print(message2)
+```
+
+---
+# Strings
+
+There is a rich set of string methods:
+https://docs.python.org/3/library/stdtypes.html#string-methods
+
+```python
+s1 = "  hello, world  "
+print(s1.split(" "))
+print(s1.strip().split(" "))
+```
+
+---
+# Join
+
+## str.join(list)
+
+list can be any "iterable" - will be explained later
+
+```python
+words = ["Hello", "world", "this", "is", "Python"]
+sentence1 = " ".join(words)
+print(sentence1)
+
+sentence2 = ",".join(words)
+print(sentence2)
+```
+
+
+---
+# F-Strings
 
 **f-strings = formatted string literals**  
 - Introduced in Python 3.6  
@@ -183,6 +266,7 @@ else:
 # Loops
 
 ```python
+# range will be explained later
 for i in range(5):
     print(i)
 
@@ -207,25 +291,6 @@ while x > 0:
 
 *Tip: Use CoPilot/ChatGPT to get a draft solution, then explain each line yourself.*
 
----
-# Session 2
-## Collections & Pythonic Programming
-
-**Learning Goals**  
-- Work with lists, tuples, sets, dictionaries  
-- Use slicing, comprehensions, and iteration helpers  
-- Solve problems in a Pythonic way  
-
----
-# Tuples
-
-```python
-point = (3, 4)   # tuple (immutable)
-point3d = (2, 3, 4)
-```
-
-- Lists = mutable sequences  
-- Tuples = immutable sequences  
 
 ---
 # List Comprehensions
@@ -253,6 +318,19 @@ evens = [x for x in range(10) if x % 2 == 0]
 names = ["Ana", "Bo", "Cai"]
 first_letters = [name[0] for name in names]
 ```
+
+---
+# Tuples
+
+```python
+point = (3, 4)   # tuple (immutable)
+point3d = (2, 3, 4)
+tuple1 = (3, )
+```
+
+- Lists = mutable sequences  
+- Tuples = immutable sequences  
+
 
 ---
 # Sets
@@ -314,8 +392,44 @@ nums = [1, -2, 3, -4]
 print(any(n < 0 for n in nums))   # True
 ```
 
+
 ---
-# 📝 Exercises (AI encouraged)
+# Using libraries
+## Use import to import a library
+
+```python
+import sys
+
+for line in sys.stdin:
+    s = line.strip()
+    if s == "":              # Skip empty lines
+        continue
+    print(line)
+```
+---
+# Using libraries
+
+## Large list of standard libraries:
+https://docs.python.org/3/library/index.html
+
+## Examples:
+math, os, sys, csv
+
+
+---
+# Functions
+
+
+---
+# Exceptions
+
+
+---
+# Classes
+
+
+---
+# 📝 Exercises
 
 1. Create a list of numbers 1–20.  
    - Print only even numbers.  
@@ -331,11 +445,4 @@ print(any(n < 0 for n in nums))   # True
 
 5. Challenge: write `is_palindrome(word)` using slicing.  
 
----
-# Wrap-Up (Week 1)
 
-- Python syntax is simple & concise  
-- Collections are the foundation of Python  
-- **AI is your coding assistant**:  
-  - Use it for boilerplate or brainstorming  
-  - But *you* must understand the code  
