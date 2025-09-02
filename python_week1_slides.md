@@ -42,7 +42,7 @@ paginate: true
 
 ---
 # Running Python
-- **Interactive REPL (Read–Eval–Print Loop)**: **
+- **Interactive REPL (Read–Eval–Print Loop):**  
     - run `python` in terminal
 - **Scripts:**
     - run `python myscript.py`  
@@ -78,8 +78,8 @@ name = "Ana"  # string
 flag = True   # bool
 z = None      # NoneType
 
-# type function returns type of a variabe
-print( type(name) )
+# type function returns type of a variable
+print(type(name))
 ```
 
 ---
@@ -130,7 +130,7 @@ new_list = list1 + list2   # new_list is now [1, 2, 3, 4]
 ---
 # Lists can contain any type
 
-## Lists can be heterogenic
+## Lists can be heterogeneous
 ```python
 a_list = [1, 2, "hello"]
 ```
@@ -147,7 +147,6 @@ print(list1)
 ---
 # Lists variables are references
 
-
 ```python
 list1 = [1, 2]
 list2 = [3, 4]
@@ -158,11 +157,10 @@ list2.append(5)
 print(list1)
 ```
 
-
 ---
 # Strings
 
-String can be added.
+Strings can be concatenated.
 ```python
 s1 = "hello"
 s2 = "world"
@@ -178,7 +176,7 @@ print(message2)
 ---
 # Strings
 
-There is a rich set of string methods:
+There is a rich set of string methods:  
 https://docs.python.org/3/library/stdtypes.html#string-methods
 
 ```python
@@ -192,7 +190,7 @@ print(s1.strip().split(" "))
 
 ## str.join(list)
 
-list can be any "iterable" - will be explained later
+list can be any "iterable" – will be explained later
 
 ```python
 words = ["Hello", "world", "this", "is", "Python"]
@@ -202,7 +200,6 @@ print(sentence1)
 sentence2 = ",".join(words)
 print(sentence2)
 ```
-
 
 ---
 # F-Strings
@@ -291,7 +288,6 @@ while x > 0:
 
 *Tip: Use CoPilot/ChatGPT to get a draft solution, then explain each line yourself.*
 
-
 ---
 # List Comprehensions
 
@@ -330,7 +326,6 @@ tuple1 = (3, )
 
 - Lists = mutable sequences  
 - Tuples = immutable sequences  
-
 
 ---
 # Sets
@@ -392,7 +387,6 @@ nums = [1, -2, 3, -4]
 print(any(n < 0 for n in nums))   # True
 ```
 
-
 ---
 # Using libraries
 ## Use import to import a library
@@ -415,18 +409,73 @@ https://docs.python.org/3/library/index.html
 ## Examples:
 math, os, sys, csv
 
-
 ---
 # Functions
 
+- Functions allow us to reuse code and organize programs.
+- Defined with the `def` keyword.
+
+```python
+def greet(name):
+    print(f"Hello {name}!")
+
+greet("Ana")
+greet("Bo")
+```
+
+- Functions can return values:
+
+```python
+def square(x):
+    return x * x
+
+print(square(5))   # 25
+```
 
 ---
 # Exceptions
 
+- Errors in Python raise **exceptions**.
+- Use `try`/`except` to handle them.
+
+```python
+try:
+    num = int("abc")  # invalid conversion
+except ValueError as e:
+    print("That was not a number:", e)
+```
+
+- `finally` block always runs:
+
+```python
+try:
+    f = open("file.txt")
+except FileNotFoundError:
+    print("File not found!")
+finally:
+    print("Done trying")
+```
 
 ---
 # Classes
 
+- Python supports object-oriented programming.
+- Define classes with the `class` keyword.
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        print(f"Hi, I'm {self.name} and I'm {self.age} years old.")
+
+p = Person("Ana", 22)
+p.greet()
+```
+
+- Classes bundle **data (attributes)** and **behavior (methods)** together.
 
 ---
 # 📝 Exercises
@@ -444,5 +493,3 @@ math, os, sys, csv
 4. Write a program that maps each name in a list to its length using a dict comprehension.  
 
 5. Challenge: write `is_palindrome(word)` using slicing.  
-
-
