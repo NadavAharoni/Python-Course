@@ -203,6 +203,7 @@ while x > 0:
 2. Print the squares of numbers 1–10 using a `for` loop.  
 3. Extend #2 using a **list comprehension**.  
 4. Write a program that keeps asking for input until the user types `"stop"`.  
+   - Hint: use `while True:` and `break`.
 
 *Tip: Use CoPilot/ChatGPT to get a draft solution, then explain each line yourself.*
 
@@ -216,14 +217,11 @@ while x > 0:
 - Solve problems in a Pythonic way  
 
 ---
-# Lists & Tuples
+# Tuples
 
 ```python
-nums = [10, 20, 30]
-nums.append(40)
-nums[1] = 25
-
 point = (3, 4)   # tuple (immutable)
+point3d = (2, 3, 4)
 ```
 
 - Lists = mutable sequences  
@@ -286,6 +284,7 @@ for name, grade in grades.items():
 
 - Key–value pairs  
 - Fast lookups  
+- Iterating over a dict yields keys by default
 
 ---
 # Iteration Helpers
