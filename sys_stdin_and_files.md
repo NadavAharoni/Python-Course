@@ -47,20 +47,20 @@ for line in sys.stdin:
 
 ## Using `sys.stdin` in a Script
 
-- When running a script, input can be **redirected from a file**:
+- In **Windows CMD**, you can redirect input from a file:
 
-**CMD example:**
 ```bat
 python script.py < input.txt
 ```
 
-**PowerShell example:**
+- In **PowerShell**, use `Get-Content` and a pipe instead:
+
 ```powershell
-python script.py < input.txt
+Get-Content input.txt | python script.py
 ```
 
-- In this case:
-  - `sys.stdin` reads from `input.txt`.
+- In both cases:
+  - `sys.stdin` reads from the file.
   - Script processes all lines automatically.
 
 ---
@@ -168,6 +168,35 @@ with open("data.txt", "r") as f:
 
 ---
 
+## How Does `with` Work?
+
+- Behind the scenes, `with` calls two special methods:
+  - `__enter__()` → called at the start, returns the object
+  - `__exit__()` → called at the end, even if an error occurs
+
+- Example:
+
+```python
+class Demo:
+    def __enter__(self):
+        print("Entering context")
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        print("Exiting context")
+
+with Demo() as d:
+    print("Inside with-block")
+```
+
+- Output:
+```
+Entering context
+Inside with-block
+Exiting context
+```
+
+---
+
 ## Using `with` for Files
 
 - Equivalent to `open()` + `close()`, but safer:
@@ -209,7 +238,8 @@ with open("data.txt", "r") as f:
 # Summary
 
 ✅ `sys.stdin` → standard input (keyboard or redirected input)  
+✅ CMD uses `<`, PowerShell uses `Get-Content |`  
 ✅ Interactive mode → waits for user input until EOF (<kbd>Ctrl+Z</kbd> + <kbd>Enter</kbd> on Windows)  
-✅ Script mode → reads from files or pipes automatically  
 ✅ File handling with `open` and `close`  
-✅ `with` statement → automatic cleanup, safer resource management  
+✅ `with` statement → uses `__enter__` and `__exit__`, ensures cleanup  
+✅ Safer and more Pythonic than manual `close()`  
