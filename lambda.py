@@ -24,15 +24,15 @@ class Power3:
         # print("calling Power3.__next__ current:", self.current)
         if self.current > self.end:
             raise StopIteration
-        value = self.current ** 3
+        number = self.current
+        value = number ** 3
         self.current += 1
-        return value
+        return number, value  # Return both the number and its cube
     
 power3 = Power3(10, 50)
 
-for val in power3:
-    print(val)
-
+for number, val in power3:
+    print(f"{number}^3 = {val}")
 
 
 # print(list(squared))  # [1, 4, 9, 16]
