@@ -221,7 +221,8 @@ class Square(Shape):
 ---
 
 # Dataclasses
-- Boilerplate reduction for classes storing data.
+- Reduce boilerplate for classes mainly used to store data.
+- Automatically adds `__init__`, `__repr__`, `__eq__`, and more.
 
 ```python
 from dataclasses import dataclass
@@ -232,14 +233,44 @@ class Point:
     y: int
 
 p1 = Point(1, 2)
-print(p1)
+p2 = Point(1, 2)
+print(p1)        # Point(x=1, y=2)
+print(p1 == p2)  # True
+```
+
+### Features
+- Default values and type hints.
+- `frozen=True` makes instances immutable.
+- `order=True` adds comparison operators.
+
+```python
+@dataclass(order=True, frozen=True)
+class Student:
+    id: int
+    name: str
+```
+
+### Real-World Example
+```python
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    id: int
+    username: str
+    email: str
+    is_active: bool = True
+
+user1 = User(1, "nadav", "nadav@example.com")
+print(user1)
 ```
 
 ---
 
 # Metaclasses (Advanced)
-- Classes **themselves** are instances of a metaclass.
-- `type` is the default metaclass.
+- A **metaclass** defines how classes are created.
+- Default metaclass is `type`.
+- Useful for enforcing rules, auto-registering classes, or modifying definitions.
 
 ```python
 class Meta(type):
@@ -249,6 +280,65 @@ class Meta(type):
 
 class MyClass(metaclass=Meta):
     pass
+
+# Output: Creating class MyClass
+```
+
+### Key Idea
+- Instances are created from classes.
+- Classes are created from **metaclasses**.
+
+### Real-World Example
+- Enforcing class naming conventions:
+
+```python
+class NameCheckMeta(type):
+    def __new__(cls, name, bases, dct):
+        if not name[0].isupper():
+            raise TypeError("Class name must start with uppercase!")
+        return super().__new__(cls, name, bases, dct)
+
+class goodClass(metaclass=NameCheckMeta):
+    pass  # ❌ will raise TypeError
+
+class GoodClass(metaclass=NameCheckMeta):
+    pass  # ✅ works fine
+```
+
+---
+
+# Inner Classes
+- Classes can be defined inside other classes.
+- Often used for logical grouping or helper structures.
+
+```python
+class Outer:
+    class Inner:
+        def greet(self):
+            print("Hello from Inner class")
+
+outer = Outer()
+inner = Outer.Inner()
+inner.greet()
+```
+
+### Use Cases
+- Represent objects tightly coupled with the outer class.
+- Hide implementation details.
+
+### Real-World Example
+```python
+class Database:
+    class Connection:
+        def __init__(self, host):
+            self.host = host
+
+        def connect(self):
+            print(f"Connecting to {self.host}")
+
+# Usage
+conn = Database.Connection("localhost")
+conn.connect()
 ```
 
 ---
@@ -261,4 +351,5 @@ class MyClass(metaclass=Meta):
 - Encapsulation, properties.
 - Class & static methods.
 - ABCs, dataclasses, metaclasses.
+- Inner classes for logical grouping.
 
