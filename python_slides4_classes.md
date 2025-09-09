@@ -191,6 +191,122 @@ print(C.mro())
 ```
 
 ---
+
+# The `super()` method
+
+- `super()` allows a class to **call methods from its parent class**.
+- Useful for **extending behavior** without rewriting parent methods.
+- Particularly important in **multiple inheritance**.
+
+```python
+class Animal:
+    def speak(self):
+        print("Some sound")
+
+class Dog(Animal):
+    def speak(self):
+        super().speak()  # call parent method
+        print("Woof!")
+
+d = Dog()
+d.speak()
+```
+
+Output:
+```
+Some sound
+Woof!
+```
+
+---
+
+# Using `super()`
+
+- Ensures **parent class methods are properly called**.
+- Avoids hardcoding the parent class name, which improves **maintainability**.
+- Works well with **cooperative multiple inheritance**.
+
+```python
+class A:
+    def hello(self):
+        print("Hello from A")
+
+class B(A):
+    def hello(self):
+        print("Hello from B")
+        super().hello()
+```
+
+---
+
+# Using `super()`
+```python
+b = B()
+b.hello()
+```
+
+Output:
+```
+Hello from B
+Hello from A
+```
+
+---
+
+# `super()` with Multiple Inheritance
+
+```python
+class A:
+    def greet(self):
+        print("A greet")
+
+class B(A):
+    def greet(self):
+        print("B greet")
+        super().greet()
+
+class C(A):
+    def greet(self):
+        print("C greet")
+        super().greet()
+
+class D(B, C):
+    def greet(self):
+        print("D greet")
+        super().greet()
+```
+
+---
+
+# `super()` with Multiple Inheritance
+
+- Output follows the **Method Resolution Order (MRO)**:
+
+``` python
+d = D()
+d.greet()
+```
+
+- Output:
+```
+D greet
+B greet
+C greet
+A greet
+```
+
+- `super()` ensures methods are called in **MRO order**, not just the direct parent.
+
+---
+
+# Summary
+
+- `super()` is used to **call parent class methods**.
+- Avoids hardcoding parent class names, improving maintainability.
+- Works seamlessly with **multiple inheritance** and Python’s **MRO**.
+- Recommended to use `super()` in all new-style classes (Python 3+).
+
+---
 # Encapsulation & Name Mangling (1)
 - Attributes that start with a single underscore are by convention "protected".
 - The underscore prefix indicates that the attributed should not be accessed outside the class.
@@ -346,6 +462,8 @@ print(p.name)
 # p.name = "Bo"  # This will raise a ValueError
 ```
 
+See: https://www.geeksforgeeks.org/python/python-property-decorator-property/
+
 ---
 
 # Properties
@@ -367,6 +485,32 @@ class Person:
             raise ValueError("Name must be at least 2 characters long")
         self._n = value
 ```
+
+---
+
+# Properties
+- Can also define a "deleter"
+
+```python
+class Person:
+    def __init__(self, name):
+        self._n = name
+
+    @property
+    def name(self):
+        return self._n
+
+    @name.setter
+    def name(self, value):
+        # removed check for brevity
+        self._n = value
+
+    @name.deleter
+    def name(self):
+       del self.__n
+
+```
+
 
 ---
 
