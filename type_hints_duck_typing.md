@@ -184,9 +184,44 @@ make_it_quack(Person())
 
 ---
 
+# Dataclasses with Type Hints
+
+- Dataclasses automatically generate `__init__`, `__repr__`, `__eq__`, and more.
+- Type hints define the fields of the dataclass.
+- Can enforce immutability with `frozen=True`.
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    id: int
+    name: str
+    email: str
+    active: bool = True
+
+u = User(1, "Alice", "alice@example.com")
+print(u)
+```
+
+- With `frozen=True`, the instance becomes immutable and hashable:
+
+```python
+@dataclass(frozen=True)
+class Point:
+    x: int
+    y: int
+
+p1 = Point(1, 2)
+# p1.x = 10  # ❌ Error: frozen dataclass is immutable
+```
+
+---
+
 # Summary
 
 - **Type hints** improve readability and enable static checking.
 - **Protocols** allow structural typing (duck typing with type hints).
 - **isinstance** is still useful for runtime safety checks.
+- **Dataclasses** use type hints to define fields and can enforce immutability.
 - Python avoids explicit casting — rely on duck typing instead.
