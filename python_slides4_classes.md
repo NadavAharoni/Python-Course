@@ -59,6 +59,50 @@ class Car:
         print(f"{self.brand} is driving!")
 ```
 
+
+---
+
+# Attributes are dynamic
+
+```python
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):
+        # new attributes can be added dynamically
+        self.barked = True
+        print(f"{self.name} says Hau Hau!")
+
+my_dog = Dog("Buddy")
+my_dog.bark()
+# new attributes can be added dynamically outside
+# the class definition
+my_dog.hair_color = "Brown"
+# attributes can be deleted
+del my_dog.hair_color # deleting dynamic attribute
+del my_dog.name  # deleting regular attribute
+```
+
+---
+# Methods are also dynamic
+
+```python
+def multiply_value(self, factor):
+    self.value *= factor
+    # print("This is a dynamically added method.")
+
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+
+MyClass.multiply_value = multiply_value
+
+obj = MyClass(10)
+obj.multiply_value(5)
+print(obj.value)
+```
+
 ---
 
 # Class vs Instance Attributes
