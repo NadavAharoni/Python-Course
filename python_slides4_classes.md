@@ -553,6 +553,8 @@ print(p1)        # Point(x=1, y=2)
 print(p1 == p2)  # True
 ```
 
+---
+
 ### Features
 - Default values and type hints.
 - `frozen=True` makes instances immutable.
@@ -564,6 +566,8 @@ class Student:
     id: int
     name: str
 ```
+
+---
 
 ### Real-World Example
 ```python
