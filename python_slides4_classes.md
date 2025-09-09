@@ -1,8 +1,14 @@
+---
+marp: true
+theme: default
+paginate: true
+---
+
 # Python Classes
 
 ---
 
-# What Are Classes?
+# Classes
 - A **class** is a blueprint for creating objects.
 - Defines attributes (data) and methods (behavior).
 - Objects created from a class are called **instances**.
@@ -22,7 +28,7 @@ my_dog.bark()
 ---
 
 # The `__init__` Method
-- Special method called when creating a new instance.
+- Special method called when creating a new instance (constructor in other languages).
 - Often used to initialize attributes.
 
 ```python
@@ -39,7 +45,10 @@ print(p.x, p.y)
 
 # Attributes and Methods
 - **Attributes**: Variables bound to an object.
+  - Attributes must be refered to by `self.<attribute_name>`
 - **Methods**: Functions defined inside a class.
+  - The first argument of each (instance) must be `self`.
+- Unlike other languages in which `this` is implicit.
 
 ```python
 class Car:
@@ -54,7 +63,7 @@ class Car:
 
 # Class vs Instance Attributes
 - Instance attributes belong to each object.
-- Class attributes are shared across all objects.
+- Class attributes are shared across all objects (similar, but not identical to `static` in other languages).
 
 ```python
 class Circle:
@@ -138,9 +147,14 @@ print(C.mro())
 ```
 
 ---
+# Encapsulation & Name Mangling (1)
+- Attributes that start with a single underscore are by convention "protected".
+- The underscore prefix indicates that the attributed should not be accessed outside the class.
+- This is not enforced by the Python interpreter.
 
-# Encapsulation & Name Mangling
-- Use `_` or `__` to indicate private attributes.
+---
+# Encapsulation & Name Mangling (2)
+- Attributes that start with two underscore are "name mangled", and considered "private"
 
 ```python
 class BankAccount:
@@ -156,6 +170,61 @@ class BankAccount:
 
 ---
 
+# Encapsulation & Name Mangling (3)
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # private
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+```
+
+If an attribute with double underscore is accessed from outside the class, an AttributeError is raised.
+```python
+# print(account.__balance) # raises an AttributeError
+```
+
+---
+# Encapsulation & Name Mangling (4)
+
+But if an attribute with double underscore is assigned outside the class, a new dynamic attribute with that name is created(!)
+
+The original (so called private) attribute remains unchanged.
+
+This could be pretty confusing...
+
+```python
+# The following line creates a new dynamic attribute(!)
+account.__balance = 1000
+print(account.__balance)  # prints 1000
+
+print(account.get_balance())  # still prints 150
+```
+
+---
+
+# Encapsulation & Name Mangling (5)
+
+```python
+# The following line creates a new dynamic attribute(!)
+account.__balance = 1000
+print(account.__balance)  # prints 1000
+print(account.get_balance())  # still prints 150    
+# The original private attribute is still there and can be accessed
+# using the "mangled" name
+print(account._BankAccount__balance)  # prints 150(!)
+# The mangled name can also be assigned
+# which will change the original private attribute
+account._BankAccount__balance = 200
+print(account.get_balance())  # prints 200
+```
+
+---
 # Class Methods and Static Methods
 - **@classmethod**: Receives class as first argument.
 - **@staticmethod**: Does not receive class or instance.
@@ -174,6 +243,27 @@ class MyClass:
     @staticmethod
     def greet():
         print("Hello!")
+```
+---
+
+# Class Methods and Static Methods
+
+```python
+class MyClass:
+    count = 0
+
+    def __init__(self):
+        MyClass.count += 1
+
+    @classmethod
+    def get_count(cls):
+        return cls.count
+
+    @staticmethod
+    def greet():
+        print("Hello!")
+        # count += 1 
+        # ^ This will raise an error because 'count' is not defined in this scope
 ```
 
 ---
@@ -194,7 +284,44 @@ class Person:
     def name(self, value):
         if not value:
             raise ValueError("Name cannot be empty")
+        if len(value) < 2:
+            raise ValueError("Name must be at least 2 characters long")
         self._name = value
+```
+---
+
+# Properties
+
+- Example usage
+
+```python
+p = Person("Alice")
+print(p.name)  # Accessing the property
+p.name = "Bob"  # Using the setter
+print(p.name)
+# p.name = "Bo"  # This will raise a ValueError
+```
+
+---
+
+# Properties
+- The "backing attribute" can have any name
+- It is a common practice to use `_<name>`
+
+```python
+class Person:
+    def __init__(self, name):
+        self._n = name
+
+    @property
+    def name(self):
+        return self._n
+
+    @name.setter
+    def name(self, value):
+        if not value or len(value) < 2:
+            raise ValueError("Name must be at least 2 characters long")
+        self._n = value
 ```
 
 ---
@@ -265,45 +392,6 @@ user1 = User(1, "nadav", "nadav@example.com")
 print(user1)
 ```
 
----
-
-# Metaclasses (Advanced)
-- A **metaclass** defines how classes are created.
-- Default metaclass is `type`.
-- Useful for enforcing rules, auto-registering classes, or modifying definitions.
-
-```python
-class Meta(type):
-    def __new__(cls, name, bases, dct):
-        print(f"Creating class {name}")
-        return super().__new__(cls, name, bases, dct)
-
-class MyClass(metaclass=Meta):
-    pass
-
-# Output: Creating class MyClass
-```
-
-### Key Idea
-- Instances are created from classes.
-- Classes are created from **metaclasses**.
-
-### Real-World Example
-- Enforcing class naming conventions:
-
-```python
-class NameCheckMeta(type):
-    def __new__(cls, name, bases, dct):
-        if not name[0].isupper():
-            raise TypeError("Class name must start with uppercase!")
-        return super().__new__(cls, name, bases, dct)
-
-class goodClass(metaclass=NameCheckMeta):
-    pass  # ❌ will raise TypeError
-
-class GoodClass(metaclass=NameCheckMeta):
-    pass  # ✅ works fine
-```
 
 ---
 
