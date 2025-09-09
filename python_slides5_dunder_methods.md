@@ -103,6 +103,80 @@ print({p1, p2})  # Only one element
 
 ---
 
+# Hashability and Immutability
+
+- Objects used as dictionary keys or set elements must be **hashable**.
+- Hashable means:
+  - `__hash__` is implemented.
+  - `__eq__` is consistent with `__hash__`.
+- To ensure correctness, hashable objects should be **immutable**.
+  - If attributes change, the hash value changes → dictionary/set lookups break.
+
+
+---
+
+# Hashability and Immutability
+
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self._x = x
+        self._y = y
+
+    def __eq__(self, other):
+        return (self._x, self._y) == (other._x, other._y)
+
+    def __hash__(self):
+        return hash((self._x, self._y))
+
+p1 = Point(1, 2)
+d = {p1: "location"}
+print(d[p1])  # works
+
+# If we could mutate x or y, hash would change and the dict would break!
+```
+
+---
+
+# Mutable Objects Fail as Dict Keys
+
+- If a hashable object is **mutable**, changing its state breaks dictionary lookups.
+- Example:
+
+```python
+class MutablePoint:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __eq__(self, other):
+        return (self.x, self.y) == (other.x, other.y)
+
+    def __hash__(self):
+        return hash((self.x, self.y))
+```
+
+---
+
+# Mutable Objects Fail as Dict Keys
+
+Because dictionaries use the hash value for lookup.
+
+```python
+p = MutablePoint(1, 2)
+d = {p: "location"}
+
+print(d[p])  # ✅ Works
+
+p.x = 99     # Mutates state → hash changes!
+
+print(d[p])  # ❌ KeyError: lookup fails
+```
+
+
+---
+
 # Arithmetic Overloading (1)
 - Redefine operators for custom classes.
 - Examples: `__add__`, `__sub__`, `__mul__`, `__truediv__`.
