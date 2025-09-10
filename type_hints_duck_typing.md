@@ -65,11 +65,20 @@ def stringify(x: Union[int, float, str]) -> str:
     return str(x)
 
 value: Any = 42
+```
+
+---
+
+# Advanced Type Hints
+
+```python
+from typing import Union, Any, Callable, TypeVar
 
 Fn = Callable[[int, int], int]
 def operate(f: Fn, a: int, b: int) -> int:
     return f(a, b)
 ```
+
 
 ---
 
