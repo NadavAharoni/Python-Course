@@ -32,6 +32,33 @@ result: int = add(3, 4)
 
 ---
 
+# Enabling type checking
+
+### Install the Pylance extension:
+Open the Extensions view (Ctrl+Shift+X or Cmd+Shift+X) and search for "Pylance". If not installed - install it.
+### Open VS Code settings.
+By navigating to File > Preferences > Settings, or by pressing Ctrl+,
+### Enable type checking
+In the search bar within the Settings tab, type "type checking mode".
+Locate the setting Python > Analysis: Type Checking Mode.
+Change the value from off (the default) to either basic or strict
+
+---
+
+# Enabling type checking: (optional) Install Mypy:
+Myoy provides additional analysis.
+
+### Install Mypy in your Python environment. 
+In the terminal type:
+```
+pip install mypy
+```
+### Enable Mypy in VS Code settings
+Open your VS Code settings.
+Search for ```python.linting.mypyEnabled``` and set it to true.
+You can also configure ```python.linting.mypyArgs``` to pass custom arguments to Mypy, such as --strict for a stricter Mypy analysis.
+
+---
 # Basic Type Hints
 
 - Built-in types: `int`, `float`, `str`, `bool`.
@@ -212,6 +239,15 @@ class User:
 u = User(1, "Alice", "alice@example.com")
 print(u)
 ```
+
+
+---
+
+# Dataclasses with Type Hints
+
+- Dataclasses automatically generate `__init__`, `__repr__`, `__eq__`, and more.
+- Type hints define the fields of the dataclass.
+- Can enforce immutability with `frozen=True`.
 
 - With `frozen=True`, the instance becomes immutable and hashable:
 
