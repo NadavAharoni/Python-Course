@@ -24,3 +24,5 @@ d = D()
 print("calling d.greet()")
 d.greet()
 
+print(D.mro())
+
