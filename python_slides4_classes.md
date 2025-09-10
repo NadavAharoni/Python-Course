@@ -5,6 +5,8 @@ paginate: true
 ---
 
 # Python Classes
+- Python supports object-oriented programming.
+- Define classes with the `class` keyword.
 
 ---
 
