@@ -6,7 +6,7 @@ paginate: true
 
 # Python Classes
 - Python supports object-oriented programming.
-- Define classes with the `class` keyword.
+- Classes are defined with the `class` keyword.
 
 ---
 
@@ -64,7 +64,10 @@ class Car:
 
 ---
 
-# Attributes are dynamic
+# Attributes are dynamic (1)
+
+## In Python, object attributes are dynamic
+Can be created and deleted at runtime
 
 ```python
 class Dog:
@@ -78,6 +81,21 @@ class Dog:
 
 my_dog = Dog("Buddy")
 my_dog.bark()
+print( my_dog.barked )
+```
+---
+
+# Attributes are dynamic (2)
+
+```python
+class Dog:
+    def __init__(self, name):
+        self.name = name
+
+    def bark(self):
+        self.barked = True
+        print(f"{self.name} says Hau Hau!")
+
 # new attributes can be added dynamically outside
 # the class definition
 my_dog.hair_color = "Brown"
