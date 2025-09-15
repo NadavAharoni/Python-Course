@@ -132,3 +132,41 @@ comprehensions → use loops.
 -   **Dict comprehensions** → key-value mappings.
 -   **Nested comprehensions** → powerful but keep simple.
 -   **Generators** → memory-efficient, lazy evaluation.
+
+---
+
+## The `join` Function
+
+-   Used to concatenate elements of an **iterable of strings** into one
+    string.
+
+-   Syntax:
+
+    ``` python
+    separator.join(iterable)
+    ```
+
+**Example:**
+
+``` python
+words = ["Python", "is", "fun"]
+sentence = " ".join(words)
+print(sentence)   # Python is fun
+```
+
+---
+
+## More `join` Examples
+
+``` python
+numbers = ["1", "2", "3"]
+csv = ",".join(numbers)
+print(csv)   # "1,2,3"
+
+path_parts = ["home", "user", "docs"]
+path = "/".join(path_parts)
+print(path)  # "home/user/docs"
+```
+
+⚠️ All items in the iterable must be strings,\
+otherwise you'll get a `TypeError`.
