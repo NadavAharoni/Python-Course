@@ -252,11 +252,18 @@ print(cart[0])        # apple
 
 ---
 
-# Iteration: `__iter__` and `__next__`
-- Define custom iteration.
-- `__iter__` returns an iterator.
-- `__next__` defines how to get next item.
+# Iteration: `__iter__` and `__next__` (1)
+## An iterator class must define the following metods:
+### `__iter__()` returns an iterator.
+It's a common practice to return the object itself (that is, `return self` )
+The returned object must have a ```__next__()``` method.
 
+### `__next__()` returns the next item.
+
+---
+
+# Iteration: `__iter__` and `__next__` (2)
+Example
 ```python
 class Countdown:
     def __init__(self, start):
@@ -266,16 +273,26 @@ class Countdown:
         self.current = self.start
         return self
 
+    # returns an integer - the next number
     def __next__(self):
         if self.current <= 0:
             raise StopIteration
         self.current -= 1
         return self.current + 1
+```
 
+---
+
+# Iteration: `__iter__` and `__next__` (3)
+
+### An iterator is used in a ```for``` loop:
+
+```python
 for num in Countdown(3):
     print(num)
 # 3, 2, 1
 ```
+
 
 ---
 
