@@ -13,6 +13,8 @@ for i, sub_list in enumerate(list1):
 for l in list1:
     print(l)
 
+print( *list1 )
+
 # print("=====")
 # list1 = [ [] for i in range(5) ]
 # print( list1 )
