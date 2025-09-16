@@ -1,3 +1,23 @@
+t1 = (1,2,3)
+a,b,c = t1
+print(a,b,c,"moshe","yaakov")
+
+a=1
+b=1
+for i in range(10):
+    a,b = b,a+b
+    print(a, b)
+
+print("---------")
+
+numbers = [ i+1 for i in range(10) ]
+print(numbers)
+squares = [ (i+1)**2 for i in range(10) ]
+print(squares)
+
+for i, item in enumerate( zip(numbers, squares) ):
+    print(i, item)
+
 list1 = [ None ] * 6
 # print( list1 )
 
