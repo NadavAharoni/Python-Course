@@ -1,3 +1,20 @@
+import sys
+
+print(sys.argv)
+print("---------------")
+
+l1 = [10,20,30,40,50]
+print(F"l1[-1]={l1[-1]}")
+print(F"l1[1:]={l1[1:]}")
+print(F"l1[::2]={l1[::2]}")
+print(F"l1[::-1]={l1[::-1]}")
+print(F"l1[:-1]={l1[:-1]}")
+print(F"l1[-1::-1]={l1[-1::-1]}")
+print(F"l1[-1:-6:-1]={l1[-1:-6:-1]}")
+
+j = "->".join( [ str(item*10) for item in l1[::-2]] )
+print(j)
+
 t1 = (1,2,3)
 a,b,c = t1
 print(a,b,c,"moshe","yaakov")
